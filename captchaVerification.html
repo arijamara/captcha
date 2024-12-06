@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reCAPTCHA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .captcha-container {
+            display: inline-block;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        .checkbox label {
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .message {
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Veuillez cocher la case ci-dessous pour continuer</h2>
+    <div class="captcha-container">
+        <div class="checkbox">
+            <input type="checkbox" id="not-robot">
+            <label for="not-robot">Je ne suis pas un robot</label>
+        </div>
+        <p class="message" id="success-message">Vérification réussie !</p>
+    </div>
+    <br>
+    <button id="continue-button" disabled>Continuer</button>
+
+    <script>
+        const checkbox = document.getElementById('not-robot');
+        const successMessage = document.getElementById('success-message');
+        const continueButton = document.getElementById('continue-button');
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                successMessage.style.display = 'block';
+                continueButton.disabled = false;
+            } else {
+                successMessage.style.display = 'none';
+                continueButton.disabled = true;
+            }
+        });
+
+        // Ajout de la redirection au clic sur le bouton "Continuer"
+        continueButton.addEventListener('click', () => {
+            window.location.href = 'index.html'; // Redirige vers la page index.html
+        });
+    </script>
+    
+</body>
+</html>
